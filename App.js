@@ -9,7 +9,7 @@ export default function App() {
   const [enteredItems, setEnteredItems] = useState([]);
 
   function addItemHandler(enteredText) {
-    //console.log(enteredNameText, enteredWidthText, enteredLengthText);
+
     setEnteredItems((currentEnteredItems) => [
       ...currentEnteredItems,
       { text: (enteredText), id: Math.random().toString() },
@@ -27,6 +27,7 @@ export default function App() {
   function startAddItemHandler() {
     setModalIsVisible(true);
   }
+
   function endAddItemHandler() {
     console.log("cancel")
     setModalIsVisible(false);
@@ -36,18 +37,11 @@ export default function App() {
     <View style={styles.appContainter}>
       <Button
         title="Add New Fabric Sizes"
-        onPress={startAddItemHandler}
-     >
+        onPress={startAddItemHandler}>
       </Button>
-      <ItemInput visible={modalIsVisible} onAddItem={addItemHandler} onCancel={endAddItemHandler}/>
+      <ItemInput visible={modalIsVisible} onAddItem={addItemHandler} onCancel={endAddItemHandler} />
       <View style={styles.listItemsContainer}>
-        {/* <ScrollView>
-        {enteredItems.map((itemname) => (
-                  <View key={itemname} style={styles.newItem}>
-                    <Text style={styles.newItemText} >{itemname}</Text>
-                  </View>))
-        }
-        </ScrollView> */}
+
         <FlatList data={enteredItems}
           renderItem={
             (dataitem) => {
@@ -62,6 +56,7 @@ export default function App() {
             return item.id;
           }}>
         </FlatList>
+
       </View>
       <StatusBar style="auto" />
     </View>
