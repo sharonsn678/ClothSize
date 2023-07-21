@@ -1,8 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, TextInput, View, ScrollView, FlatList } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View, ScrollView, FlatList, SafeAreaView } from 'react-native';
 import { useState } from 'react';
 import SingleItem from './components/SingleItem.js'
 import ItemInput from './components/ItemInput.js'
+import Colors from './colors/Colors'
+
 
 export default function App() {
   const [modalIsVisible, setModalIsVisible] = useState(false);
@@ -35,13 +37,15 @@ export default function App() {
 
   return (
     <View style={styles.appContainter}>
+      <SafeAreaView>
       <Button
         title="Add New Fabric Sizes"
         onPress={startAddItemHandler}>
       </Button>
       <ItemInput visible={modalIsVisible} onAddItem={addItemHandler} onCancel={endAddItemHandler} />
-      <View style={styles.listItemsContainer}>
 
+      </SafeAreaView>
+       <View style={styles.listItemsContainer}>
         <FlatList data={enteredItems}
           renderItem={
             (dataitem) => {
@@ -71,7 +75,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#fffff0',
+    backgroundColor: Colors.primary100,
     alignItems: 'center',
     justifyContent: 'center',
   },

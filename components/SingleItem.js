@@ -1,4 +1,5 @@
 import {StyleSheet,View, Text, Pressable} from 'react-native';
+import Colors from '../colors/Colors'
 
 
 
@@ -20,7 +21,7 @@ const styles= StyleSheet.create({
         margin: 8,
         padding: 8,
         height: 30,
-        backgroundColor: '#1d5d9b',
+        backgroundColor: Colors.accent700,
         color: 'white',
         borderRadius: 6,
       },

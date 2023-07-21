@@ -1,5 +1,6 @@
 import { StyleSheet, View, TextInput, Button, Modal } from 'react-native';
 import { useState } from 'react';
+import Colors from '../colors/Colors'
 
 
 
@@ -29,6 +30,7 @@ function ItemInput(props) {
     return (
         <Modal visible={props.visible} animationType='slide'>
             <View style={styles.inputContainter} >
+                
                 <TextInput
                     style={styles.textInput}
                     placeholder="Fabric Description"
@@ -46,10 +48,10 @@ function ItemInput(props) {
                     value={enteredLengthText} />
                 <View style={styles.buttonContainer}>
                     <View style={styles.button}>
-                        <Button title="Save" onPress={addNewItemHandler} style={styles.button} color='#191970'/>
+                        <Button title="Save" onPress={addNewItemHandler} style={styles.button} color={Colors.accent800} />
                     </View>
                     <View style={styles.button} >
-                        <Button title="Cancel" onPress={props.onCancel} color='#191970' />
+                        <Button title="Cancel" onPress={props.onCancel} color={Colors.accent800} />
                     </View>
 
             </View>
@@ -70,12 +72,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: 26,
-        backgroundColor:'#fbeeac',
+        backgroundColor:Colors.primary150,
     },
     textInput: {
         width: '90%',
         borderWidth: 1,
-        borderColor: '#1d5d9b',
+        borderColor: Colors.accent700,
         marginRight: 8,
         padding: 5,
         marginTop: 20
