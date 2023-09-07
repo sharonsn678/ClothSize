@@ -1,7 +1,10 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { useContext, useLayoutEffect,useState } from 'react';
+import { View, Text, StyleSheet, Button } from 'react-native'
 import { SIZEITEMS, CATEGORIES } from '../data/sizedata';
 import Colors from '../../colors/Colors'
 import SearchBar from '../components/SearchBar';
+import IconButton from '../components/IconButton';
+//import { FavoritesContext } from '../storage/FavoriteContext';
 
 function MoreInfoScreen({ route, navigation }) {
 
@@ -10,7 +13,32 @@ function MoreInfoScreen({ route, navigation }) {
     const regionid = itemDetail.regionIds[0];
     const category = CATEGORIES.find((acat) => { return acat.id === regionid });
 
-    console.log('item id', itemId);
+    //const favoriteItemCtx = useContext(FavoritesContext);
+    //const itemIsFavorite = favoriteItemCtx.ids.includes(itemId);
+    const [itemIsFavorite, setItemIsFavorite] = useState(false);
+
+
+    function headerButtonPressHandler(){
+        setItemIsFavorite(!itemIsFavorite);
+ /*       console.log("isfavorate",itemIsFavorite);
+        if (itemIsFavorite){
+            favoriteItemCtx.removeFavorite(itemId);
+        }
+        else{
+            favoriteItemCtx.addFavorite(itemId);
+            console.log("calling add fvr");
+        }*/
+    }
+
+    useLayoutEffect(() => {
+        navigation.setOptions({
+          headerRight: () => {
+            //return <Button title='Save' onPress={headerButtonPressHandler}/>
+            return <IconButton icon={itemIsFavorite?"star":"save"} onPress={headerButtonPressHandler} />
+          }
+        });
+      }, [navigation, headerButtonPressHandler]);
+
     return (
         <View>
             <View style={styles.topTextContainer}>

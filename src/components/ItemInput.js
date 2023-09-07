@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 26,
         backgroundColor:Colors.primary150,
+        marginTop: 40,
     },
     textInput: {
         width: '90%',
