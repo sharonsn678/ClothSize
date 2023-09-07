@@ -1,6 +1,6 @@
 import { StyleSheet, View, TextInput, Button, Modal } from 'react-native';
 import { useState } from 'react';
-import Colors from '../colors/Colors'
+import Colors from '../../colors/Colors'
 
 
 
@@ -20,7 +20,7 @@ function ItemInput(props) {
     }
 
     function addNewItemHandler() {
-        props.onAddItem((enteredNameText + " width:" + enteredWidthText + " length: " + enteredLengthText));
+        props.onAddItem((enteredNameText + " width: " + enteredWidthText + " length: " + enteredLengthText));
         setEnteredLengthText('');
         setEnteredWidthText('');
         setEnteredNameText('');

@@ -1,10 +1,14 @@
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+
 import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, Text, TextInput, View, ScrollView, FlatList, SafeAreaView } from 'react-native';
 import { useState } from 'react';
-import SingleItem from './components/SingleItem.js'
-import ItemInput from './components/ItemInput.js'
+import SingleItem from './src/components/SingleItem.js'
+import ItemInput from './src/components/ItemInput.js'
 import Colors from './colors/Colors'
 
+const navigator = createNativeStackNavigator()
 
 export default function App() {
   const [modalIsVisible, setModalIsVisible] = useState(false);

@@ -1,5 +1,5 @@
 import {StyleSheet,View, Text, Pressable} from 'react-native';
-import Colors from '../colors/Colors'
+import Colors from '../../colors/Colors'
 
 
 
