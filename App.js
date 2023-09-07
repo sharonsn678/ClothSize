@@ -1,95 +1,47 @@
-import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { StatusBar } from 'expo-status-bar';
+
 import { Button, StyleSheet, Text, TextInput, View, ScrollView, FlatList, SafeAreaView } from 'react-native';
+
+
 import { useState } from 'react';
 import SingleItem from './src/components/SingleItem.js'
 import ItemInput from './src/components/ItemInput.js'
 import Colors from './colors/Colors'
 
-const navigator = createNativeStackNavigator()
+import HomeScreen from './src/screens/HomeScreen.js';
+import MyListScreen from './src/screens/MyListScreen.js';
+import AddItemScreen from './src/screens/AddItemScreen.js';
+import DetailScreen from './src/screens/DetailScreen.js';
+import MoreInfoScreen from './src/screens/MoreInfoScreen.js';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [modalIsVisible, setModalIsVisible] = useState(false);
-  const [enteredItems, setEnteredItems] = useState([]);
-
-  function addItemHandler(enteredText) {
-
-    setEnteredItems((currentEnteredItems) => [
-      ...currentEnteredItems,
-      { text: (enteredText), id: Math.random().toString() },
-    ]);
-    endAddItemHandler();
-    console.log(enteredItems)
-  }
-
-  function deleteItemHandler(id) {
-    setEnteredItems(currentEnteredItems => {
-      return currentEnteredItems.filter((item) => item.id != id);
-    })
-  }
-
-  function startAddItemHandler() {
-    setModalIsVisible(true);
-  }
-
-  function endAddItemHandler() {
-    console.log("cancel")
-    setModalIsVisible(false);
-  }
-
   return (
-    <View style={styles.appContainter}>
-      <SafeAreaView>
-      <Button
-        title="Add New Fabric Sizes"
-        onPress={startAddItemHandler}>
-      </Button>
-      <ItemInput visible={modalIsVisible} onAddItem={addItemHandler} onCancel={endAddItemHandler} />
-
-      </SafeAreaView>
-       <View style={styles.listItemsContainer}>
-        <FlatList data={enteredItems}
-          renderItem={
-            (dataitem) => {
-              return (
-                <SingleItem
-                  text={dataitem.item.text}
-                  id={dataitem.item.id} onDeleteItem={deleteItemHandler} />
-              );
-            }
+    <>
+    <StatusBar style="auto" />
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Home'>
+        <Stack.Screen name = "Home" component={HomeScreen}
+          options={
+            {title: 'Home'}
           }
-          keyExtractor={(item, index) => {
-            return item.id;
-          }}>
-        </FlatList>
+        />
+        <Stack.Screen name = "Detail" component={DetailScreen}
+        />
+        <Stack.Screen name='MyList' component={MyListScreen}
+        />
+        <Stack.Screen name='AddItem' component={AddItemScreen}
+        />
+        <Stack.Screen name='MoreInfoScreen' component={MoreInfoScreen} />
 
-      </View>
-      <StatusBar style="auto" />
-    </View>
+      </Stack.Navigator>
+
+    </NavigationContainer>
+    </>
+
   );
 }
-
-const styles = StyleSheet.create({
-  appContainter: {
-    flex: 1,
-    padding: 50,
-    paddingHorizontal: 16,
-  },
-  container: {
-    flex: 1,
-    backgroundColor: Colors.primary100,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  listItemsContainer: {
-    flex: 5,
-  },
-  button: {
-    width: '40%',
-    padding: 20,
-
-  }
-});
