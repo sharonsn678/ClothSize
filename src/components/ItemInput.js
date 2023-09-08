@@ -20,7 +20,7 @@ function ItemInput(props) {
     }
 
     function addNewItemHandler() {
-        props.onAddItem((enteredNameText + " width: " + enteredWidthText + " length: " + enteredLengthText));
+        props.onAddItem(({enteredNameText, enteredLengthText, enteredWidthText}));
         setEnteredLengthText('');
         setEnteredWidthText('');
         setEnteredNameText('');

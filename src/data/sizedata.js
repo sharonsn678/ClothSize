@@ -2,11 +2,11 @@ import Category from '../models/category';
 import SizeItem from '../models/sizeItem';
 
 export const CATEGORIES = [
-  new Category('c1', 'United State', 'in'),
-  new Category('c2', 'United Kingdom', 'cm'),
-  new Category('c5', 'Europe', 'cm'),
-  new Category('c3', 'Canada', 'in'),
-  new Category('c4', 'China', 'cm')
+  new Category('c1', 'United State'),
+  new Category('c2', 'United Kingdom'),
+  new Category('c5', 'Europe'),
+  new Category('c3', 'Canada'),
+  new Category('c4', 'China'),
 ];
 
 export const SIZEITEMS = [

@@ -11,14 +11,17 @@ function MyListScreen ({navigation}){
     const [modalIsVisible, setModalIsVisible] = useState(false);
     const [enteredItems, setEnteredItems] = useState([]);
   
-    function addItemHandler(enteredText) {
-  
+    function addItemHandler(props) {
+  console.log(props);
       setEnteredItems((currentEnteredItems) => [
         ...currentEnteredItems,
-        { text: (enteredText), id: Math.random().toString() },
+        { text: (props.enteredNameText), 
+          id: Math.floor(Math.random()*10000).toString(),
+          width: props.enteredWidthText,
+          length: props.enteredLengthText
+         },
       ]);
       endAddItemHandler();
-      console.log(enteredItems)
     }
   
     function deleteItemHandler(id) {
@@ -32,7 +35,6 @@ function MyListScreen ({navigation}){
     }
   
     function endAddItemHandler() {
-      console.log("cancel")
       setModalIsVisible(false);
     }
 

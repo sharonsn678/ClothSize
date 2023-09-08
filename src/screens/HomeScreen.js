@@ -8,7 +8,6 @@ function HomeScreen({navigation}) {
 
 
         function pressHandler(){
-            console.log(navigation.navigation);
             navigation.navigate('Detail', {categoryId: itemData.item.id})
         }
 
