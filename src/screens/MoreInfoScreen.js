@@ -1,10 +1,11 @@
-import { useContext, useLayoutEffect,useState } from 'react';
+import { useContext, useLayoutEffect, useState } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native'
 import { SIZEITEMS, CATEGORIES } from '../data/sizedata';
 import Colors from '../../colors/Colors'
 import SearchBar from '../components/SearchBar';
 import IconButton from '../components/IconButton';
-//import { FavoritesContext } from '../storage/FavoriteContext';
+import { FavoritesContext } from '../storage/MyContext';
+
 
 function MoreInfoScreen({ route, navigation }) {
 
@@ -13,21 +14,19 @@ function MoreInfoScreen({ route, navigation }) {
     const regionid = itemDetail.regionIds[0];
     const category = CATEGORIES.find((acat) => { return acat.id === regionid });
 
-    //const favoriteItemCtx = useContext(FavoritesContext);
-    //const itemIsFavorite = favoriteItemCtx.ids.includes(itemId);
-    const [itemIsFavorite, setItemIsFavorite] = useState(false);
+    const favoriteItemCtx = useContext(FavoritesContext);
+    const isFavorite = favoriteItemCtx.ids.includes(itemId);
+    const [itemIsFavorite, setItemIsFavorite] = useState(isFavorite);
 
 
     function headerButtonPressHandler(){
         setItemIsFavorite(!itemIsFavorite);
- /*       console.log("isfavorate",itemIsFavorite);
         if (itemIsFavorite){
             favoriteItemCtx.removeFavorite(itemId);
         }
         else{
             favoriteItemCtx.addFavorite(itemId);
-            console.log("calling add fvr");
-        }*/
+        }
     }
 
     useLayoutEffect(() => {

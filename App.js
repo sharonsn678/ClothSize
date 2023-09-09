@@ -16,6 +16,7 @@ import MyListScreen from './src/screens/MyListScreen.js';
 import AddItemScreen from './src/screens/AddItemScreen.js';
 import DetailScreen from './src/screens/DetailScreen.js';
 import MoreInfoScreen from './src/screens/MoreInfoScreen.js';
+import FavoritesContextProvider from './src/storage/MyContext.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,9 @@ export default function App() {
   return (
     <>
     <StatusBar style="auto" />
+    <FavoritesContextProvider>
+
+  
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home'>
         <Stack.Screen name = "Home" component={HomeScreen}
@@ -41,6 +45,7 @@ export default function App() {
       </Stack.Navigator>
 
     </NavigationContainer>
+    </FavoritesContextProvider>
     </>
 
   );

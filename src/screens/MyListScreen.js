@@ -1,21 +1,29 @@
 
 import { Button, StyleSheet, Text, TextInput, View, ScrollView, FlatList, SafeAreaView } from 'react-native';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import SingleItem from '../components/SingleItem';
 import ItemInput from '../components/ItemInput.js';
 import Colors from '../../colors/Colors';
+import { FavoritesContext } from '../storage/MyContext';
+
 
 
 function MyListScreen ({navigation}){
 
+  const favoriteItemCtx = useContext(FavoritesContext);
+  const myFavoriteItems = favoriteItemCtx.myItems;
+
+console.log("myFavoriteItems", myFavoriteItems);
     const [modalIsVisible, setModalIsVisible] = useState(false);
-    const [enteredItems, setEnteredItems] = useState([]);
+    const [enteredItems, setEnteredItems] = useState(myFavoriteItems);
   
+
+
+    
     function addItemHandler(props) {
-  console.log(props);
       setEnteredItems((currentEnteredItems) => [
         ...currentEnteredItems,
-        { text: (props.enteredNameText), 
+        { name: (props.enteredNameText), 
           id: Math.floor(Math.random()*10000).toString(),
           width: props.enteredWidthText,
           length: props.enteredLengthText
@@ -37,7 +45,7 @@ function MyListScreen ({navigation}){
     function endAddItemHandler() {
       setModalIsVisible(false);
     }
-
+    console.log(enteredItems);
     return (
         <View style={styles.appContainter}>
           <Button
@@ -52,7 +60,7 @@ function MyListScreen ({navigation}){
                 (dataitem) => {
                   return (
                     <SingleItem
-                      text={dataitem.item.text}
+                      text={dataitem.item.name}
                       id={dataitem.item.id} onDeleteItem={deleteItemHandler} />
                   );
                 }
