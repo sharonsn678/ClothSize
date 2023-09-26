@@ -8,6 +8,7 @@ function ItemInput(props) {
     const [enteredNameText, setEnteredNameText] = useState('');
     const [enteredWidthText, setEnteredWidthText] = useState('');
     const [enteredLengthText, setEnteredLengthText] = useState('');
+    const [enteredUnitText, setEnteredUnitText] = useState('');
 
     function goalInputNameHandler(enteredText) {
         setEnteredNameText(enteredText);
@@ -18,12 +19,16 @@ function ItemInput(props) {
     function goalInputLengthHandler(enteredText) {
         setEnteredLengthText(enteredText);
     }
+    function goalInputUnitHandler(enteredText) {
+        setEnteredUnitText(enteredText);
+    }
 
     function addNewItemHandler() {
         props.onAddItem(({enteredNameText, enteredLengthText, enteredWidthText}));
         setEnteredLengthText('');
         setEnteredWidthText('');
         setEnteredNameText('');
+        setEnteredUnitText('');
     }
 
 
@@ -46,6 +51,11 @@ function ItemInput(props) {
                     placeholder="length"
                     onChangeText={goalInputLengthHandler}
                     value={enteredLengthText} />
+                <TextInput
+                    style={styles.textInput}
+                    placeholder="Unit"
+                    onChangeText={goalInputUnitHandler}
+                    value={enteredUnitText} />
                 <View style={styles.buttonContainer}>
                     <View style={styles.button}>
                         <Button title="Save" onPress={addNewItemHandler} style={styles.button} color={Colors.accent800} />
@@ -69,7 +79,7 @@ const styles = StyleSheet.create({
     inputContainter: {
         flex: 1,
         flexDirection: 'colume',
-        justifyContent: 'space-between',
+     
         alignItems: 'center',
         padding: 26,
         backgroundColor:Colors.primary150,
@@ -90,6 +100,5 @@ const styles = StyleSheet.create({
     button: {
         width: 100,
         marginHorizontal: 8
-        
     }
 });

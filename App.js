@@ -6,7 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, Text, TextInput, View, ScrollView, FlatList, SafeAreaView } from 'react-native';
 
 
-import { useState } from 'react';
+import { useState, } from 'react';
 import SingleItem from './src/components/SingleItem.js'
 import ItemInput from './src/components/ItemInput.js'
 import Colors from './colors/Colors'
@@ -19,6 +19,7 @@ import MoreInfoScreen from './src/screens/MoreInfoScreen.js';
 import FavoritesContextProvider from './src/storage/MyContext.js';
 
 const Stack = createNativeStackNavigator();
+
 
 export default function App() {
   return (

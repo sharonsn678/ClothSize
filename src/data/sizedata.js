@@ -53,7 +53,7 @@ export const SIZEITEMS = [
   new SizeItem(
     's6',
     ['c1'],
-    'QUEUE',
+    'QUEEN',
     '90',
     '94',
     'in'

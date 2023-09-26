@@ -5,6 +5,8 @@ import { SIZEITEMS } from '../data/sizedata';
 
 function DetailScreen({route, navigation}){
 
+    
+
     function headerButtonPressHandler(){
         navigation.navigate('MyList')
  /*       console.log("isfavorate",itemIsFavorite);
@@ -50,7 +52,9 @@ function DetailScreen({route, navigation}){
         <View>
             <FlatList
                 data = {displayitems}
-                keyExtractor={(item)=>{item.id}}
+                keyExtractor={(item)=>{
+                return item.id;
+                }}
                 renderItem={renderSizeItem}
             />
         </View>

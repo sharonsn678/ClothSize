@@ -1,10 +1,12 @@
-import { useContext, useLayoutEffect, useState } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native'
+import { useContext, useLayoutEffect, useReducer, useState } from 'react';
+import { View, Text, StyleSheet, Button, Pressable } from 'react-native'
 import { SIZEITEMS, CATEGORIES } from '../data/sizedata';
 import Colors from '../../colors/Colors'
 import SearchBar from '../components/SearchBar';
 import IconButton from '../components/IconButton';
 import { FavoritesContext } from '../storage/MyContext';
+import { sizeReducer } from '../reducers/sizeConversion.js'
+
 
 
 function MoreInfoScreen({ route, navigation }) {
@@ -38,15 +40,22 @@ function MoreInfoScreen({ route, navigation }) {
         });
       }, [navigation, headerButtonPressHandler]);
 
+      const [state, dispatch] = useReducer(sizeReducer, itemDetail);
+
     return (
         <View>
             <View style={styles.topTextContainer}>
                 <Text style={styles.detailTitle}>{itemDetail.name}</Text>
                 <Text style={styles.detailText}>{category.region}</Text>
                 <View style={styles.rowText}>
-                    <Text style={styles.detailText}>width: {itemDetail.width}, </Text>
-                    <Text style={styles.detailText}>length: {itemDetail.length}, </Text>
-                    <Text style={styles.detailText}>unit: {itemDetail.unit}</Text>
+                    <Text style={styles.detailText}>width: {state.width}, </Text>
+                    <Text style={styles.detailText}>length: {state.length}, </Text>
+                  
+                    <Pressable 
+                    style = {styles.ConvertButton}
+                    onPress={() => dispatch({unitToChange: true})}>
+                        <Text>{state.unit.toUpperCase()}</Text>
+                    </Pressable>
                 </View>
             </View>
             <SearchBar/>
@@ -69,8 +78,17 @@ const styles = StyleSheet.create(
         rowText: {
             flexDirection: 'row'
         },
+        ConvertButton: {
+            width: 40,
+            alignItems: 'center',
+            borderColor: Colors.accentgreen,
+            borderWidth: 1,
+            fontSize: 40,
+            borderRadius: 3,
+            margin: 3
+        },
         detailText: {
-            fontSize: 18,
+            fontSize: 20,
         },
         detailTitle: {
             fontSize: 20,
