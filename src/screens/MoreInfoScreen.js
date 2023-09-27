@@ -36,7 +36,7 @@ function MoreInfoScreen({ route, navigation }) {
     }
 
     function handleTermChanges(proximity) {
-        console.log(proximity)
+
         if (proximity > 0 && proximity < 100) {
 
             const result = [];
@@ -59,14 +59,12 @@ function MoreInfoScreen({ route, navigation }) {
                     }
                     const widthDiff = Math.abs(width2 - width);
                     const lengthDiff = Math.abs(length2 - length);
-                    console.log("search start", widthDiff, lengthDiff);
                     if (widthDiff <= proximity && lengthDiff <= proximity) {
                         result.push(item)
                     }
                 }
             }
             setSearchArrray(result)
-            console.log("search result:",searchArray)
         }
     }
 
@@ -113,7 +111,7 @@ function MoreInfoScreen({ route, navigation }) {
                 </View>
             </View>
             <View style={styles.topTextContainer}>
-                <Text>Choose the approximated difference in centimeters"</Text>
+                <Text>Choose the approximated difference in centimeters</Text>
                 <SearchBar term={term} onTermChange={handleTermChanges} />
             </View>
             <View>
