@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const ENDURL = 'https://duvetsize-default-rtdb.firebaseio.com/'
+//duvetsize
+const ENDURL = 'https://-default-rtdb.firebaseio.com/'
 
 export async function storeItem(itemData) {
     try {
@@ -22,7 +23,6 @@ export async function fetchItems() {
 
         const response = await axios.get(ENDURL + '/duvetsize.json');
         const myItems = [];
-        console.log("reponse:", response);
 
         for (const key in response.data) {
             const sizeItemObj = {

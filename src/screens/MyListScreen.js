@@ -18,7 +18,6 @@ function MyListScreen ({navigation}){
    useEffect(() => {
     async function getItems() {
       const newItems = await fetchItems();
-      console.log("from firebase: ",newItems);
       setEnteredItems(newItems);
     };
     getItems();

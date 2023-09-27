@@ -1,6 +1,5 @@
 import { createContext, useState } from 'react';
 import { SIZEITEMS } from '../data/sizedata';
-import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export const FavoritesContext = createContext({
   ids: [],
@@ -11,18 +10,6 @@ export const FavoritesContext = createContext({
 
 function FavoritesContextProvider({ children }) {
 
-//   const retrivedIds = async ()=> {
-//     try{
-//       const keys = await AsyncStorage.getAllKeys();
-//       console.log("get keys", keys);
-//       return (keys || []);
-//     }
-//      catch (error){
-//         console.error(error);
-//      }
-//   }
-
-// console.log("retrivedIds", retrivedIds);
   const [favoriteItemIds, setFavoriteItemIds] = useState([]);
   const [myFavoriteItems, setMyFavoriteItems] = useState([]);
 
@@ -40,13 +27,6 @@ function FavoritesContextProvider({ children }) {
       currentFavIds.filter((mealId) => mealId !== id)
     ); 
  }
-
-//  const storeData = async (vakye) =>{ 
-//   try{
-//       await AsyncStorage.setItem('ids',JSON.stringigy(favoriteItemIds));
-//   } catch (e) {
-//     console.log("failed ayncstorage",e);
-//   };
 
   const value = {
     ids: favoriteItemIds,

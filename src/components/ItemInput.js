@@ -10,16 +10,16 @@ function ItemInput(props) {
     const [enteredLengthText, setEnteredLengthText] = useState('');
     const [enteredUnitText, setEnteredUnitText] = useState('');
 
-    function goalInputNameHandler(enteredText) {
+    function sizeInputNameHandler(enteredText) {
         setEnteredNameText(enteredText);
     }
-    function goalInputWidthHandler(enteredText) {
+    function sizeInputWidthHandler(enteredText) {
         setEnteredWidthText(enteredText);
     }
-    function goalInputLengthHandler(enteredText) {
+    function sizeInputLengthHandler(enteredText) {
         setEnteredLengthText(enteredText);
     }
-    function goalInputUnitHandler(enteredText) {
+    function sizeInputUnitHandler(enteredText) {
         setEnteredUnitText(enteredText);
     }
 
@@ -38,23 +38,27 @@ function ItemInput(props) {
                 
                 <TextInput
                     style={styles.textInput}
-                    placeholder="Fabric Description"
-                    onChangeText={goalInputNameHandler}
+                    placeholder="Name / Description"
+                    placeholderTextColor= {Colors.accent100}
+                    onChangeText={sizeInputNameHandler}
                     value={enteredNameText} />
                 <TextInput
                     style={styles.textInput}
                     placeholder="Width"
-                    onChangeText={goalInputWidthHandler}
+                    placeholderTextColor= {Colors.accent100}
+                    onChangeText={sizeInputWidthHandler}
                     vlaue={enteredWidthText} />
                 <TextInput
                     style={styles.textInput}
-                    placeholder="length"
-                    onChangeText={goalInputLengthHandler}
+                    placeholder="Length"
+                    placeholderTextColor= {Colors.accent100}
+                    onChangeText={sizeInputLengthHandler}
                     value={enteredLengthText} />
                 <TextInput
                     style={styles.textInput}
                     placeholder="Unit"
-                    onChangeText={goalInputUnitHandler}
+                    placeholderTextColor= {Colors.accent100}
+                    onChangeText={sizeInputUnitHandler}
                     value={enteredUnitText} />
                 <View style={styles.buttonContainer}>
                     <View style={styles.button}>
@@ -87,6 +91,7 @@ const styles = StyleSheet.create({
     },
     textInput: {
         width: '90%',
+        height: 50,
         borderWidth: 1,
         borderColor: Colors.accent700,
         marginRight: 8,

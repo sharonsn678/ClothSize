@@ -40,7 +40,8 @@ function DetailScreen({route, navigation}){
             name: itemData.item.name,
             width: itemData.item.width,
             length: itemData.item.length,
-            unit: itemData.item.unit}
+            unit: itemData.item.unit,
+        }
 
         return (
             <SizeItemView {...item}
