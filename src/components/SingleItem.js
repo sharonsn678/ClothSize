@@ -8,9 +8,9 @@ function SingleItem(props) {
       <Pressable onPress={props.onDeleteItem.bind(this, props.id)}>
         <View style={styles.newItem}>
         <Text style={styles.newItemText} >{props.text}:</Text>
-        <Text style ={styles.newItemText}> width: {props.width}, </Text>
-        <Text style ={styles.newItemText}> length: {props.length}, </Text>
-        <Text style ={styles.newItemText}> unit:{props.unit}</Text>
+        <Text style ={styles.newItemText}> Width: {props.width}, </Text>
+        <Text style ={styles.newItemText}> Length: {props.length}, </Text>
+        <Text style ={styles.newItemText}> Unit: {props.unit}</Text>
 
       </View>
       </Pressable>

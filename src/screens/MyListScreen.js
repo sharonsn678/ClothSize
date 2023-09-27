@@ -6,7 +6,8 @@ import ItemInput from '../components/ItemInput.js';
 import Colors from '../../colors/Colors';
 import { FavoritesContext } from '../storage/MyContext';
 import FavoriteSingleItem from '../components/FavoriteItem';
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import { storeItem, fetchItems } from '../http/firebase';
+//import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 function MyListScreen ({navigation}){
@@ -14,26 +15,35 @@ function MyListScreen ({navigation}){
   const favoriteItemCtx = useContext(FavoritesContext);
   const myFavorites = favoriteItemCtx.ids;
 
-  // useEffect(() => {
-  //   getMyItems();
-  // }, [enteredItems]);
+   useEffect(() => {
+    async function getItems() {
+      const newItems = await fetchItems();
+      console.log("from firebase: ",newItems);
+      setEnteredItems(newItems);
+    };
+    getItems();
+   },[]);
 
     const [modalIsVisible, setModalIsVisible] = useState(false);
     const [enteredItems, setEnteredItems] = useState([]);
     const [myFavoriteIds, setMyFavoriteIds] = useState(myFavorites);
   
     
-    function addItemHandler(props) {
-      setEnteredItems((currentEnteredItems) => [
-        ...currentEnteredItems,
-        { name: (props.enteredNameText), 
-          width: props.enteredWidthText,
-          length: props.enteredLengthText,
-          unit: props.enteredUnitText || "in",
-          id: Math.floor(Math.random()*10000).toString(),
-         },
-      ]);
- 
+    async function addItemHandler(props) {
+
+      const newItem = { name: (props.enteredNameText), 
+        width: props.enteredWidthText,
+        length: props.enteredLengthText,
+        unit: props.enteredUnitText || "in",
+       };
+
+      const key = await storeItem(newItem)
+      if (key != 0){
+        const newItemWithId = {...newItem, id: key};
+        setEnteredItems([...enteredItems, newItemWithId]);
+      }
+      
+      //Math.floor(Math.random()*10000).toString(),
       endAddItemHandler();
     }
 
@@ -75,7 +85,6 @@ function MyListScreen ({navigation}){
   
     function endAddItemHandler() {
       setModalIsVisible(false);
-      saveItems(enteredItems)
     }
 
     return (
@@ -100,11 +109,7 @@ function MyListScreen ({navigation}){
                       id={dataitem.item.id} onDeleteItem={deleteItemHandler} />
                   );
                 }
-              }
-              keyExtractor={(item) => {
-                console.log("mylist", item);
-                return item.item.id.id;
-              }}>
+              }>
             </FlatList>
           </View>
            <View style={styles.listItemsContainer}>
