@@ -9,21 +9,12 @@ function DetailScreen({route, navigation}){
 
     function headerButtonPressHandler(){
         navigation.navigate('MyList')
- /*       console.log("isfavorate",itemIsFavorite);
-        if (itemIsFavorite){
-            favoriteItemCtx.removeFavorite(itemId);
-        }
-        else{
-            favoriteItemCtx.addFavorite(itemId);
-            console.log("calling add fvr");
-        }*/
     }
 
     useLayoutEffect(() => {
         navigation.setOptions({
           headerRight: () => {
             return <Button title='My List' onPress={headerButtonPressHandler}/>
-            //return <IconButton icon={itemIsFavorite?"star":"save"} color="white" onPress={headerButtonPressHandler} />
           }
         });
       }, [navigation, headerButtonPressHandler]);

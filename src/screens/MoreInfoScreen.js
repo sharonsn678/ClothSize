@@ -2,11 +2,13 @@ import { useContext, useLayoutEffect, useReducer, useState } from 'react';
 import { View, Text, StyleSheet, Button, Pressable, FlatList } from 'react-native'
 import { SIZEITEMS, CATEGORIES } from '../data/sizedata';
 import Colors from '../../colors/Colors'
-import SearchBar from '../components/SearchBar';
+//import SearchBar from '../components/SearchBar';
+import NumberPicker from '../components/NumberPicker';
 import IconButton from '../components/IconButton';
 import { FavoritesContext } from '../storage/MyContext';
 import { sizeReducer } from '../reducers/sizeConversion.js'
 import SizeItemView from '../components/SizeItemView'
+import SearchBar from '../components/SearchBar';
 
 
 
@@ -36,6 +38,8 @@ function MoreInfoScreen({ route, navigation }) {
     }
 
     function handleTermChanges(proximity) {
+        //const proximity = 10;
+        //console.log("handleTerm:",props);
 
         if (proximity > 0 && proximity < 100) {
 
@@ -112,7 +116,8 @@ function MoreInfoScreen({ route, navigation }) {
             </View>
             <View style={styles.topTextContainer}>
                 <Text>Choose the approximated difference in centimeters</Text>
-                <SearchBar term={term} onTermChange={handleTermChanges} />
+                <SearchBar term={term} onTermChange={handleTermChanges}/>
+                
             </View>
             <View>
                 <FlatList
