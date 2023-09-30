@@ -1,5 +1,5 @@
 import { useLayoutEffect } from 'react';
-import {View, Text, StyleSheet, FlatList, Button} from 'react-native'
+import {View, StyleSheet, FlatList, Button} from 'react-native'
 import SizeItemView from '../components/SizeItemView';
 import { SIZEITEMS } from '../data/sizedata';
 

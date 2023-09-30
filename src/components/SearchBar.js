@@ -46,12 +46,12 @@ const styles = StyleSheet.create({
         marginHorizontal: 10
     },
     submitButton:{
-        flex: 0.3,
+        flex: 0.35,
         alignItems:'baseline'
   
     },
     text:{
-        fontSize: 22,
+        fontSize: 20,
         color: Colors.primary200,
         marginTop:10,
     }

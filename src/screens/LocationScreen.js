@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { getCurrentPositionAsync, useForgroundPermission } from 'expo-location'
+import { getCurrentPositionAsync} from 'expo-location'
 
 function LocationPicker() {
 

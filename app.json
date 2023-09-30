@@ -1,12 +1,12 @@
 {
   "expo": {
     "name": "DuvetSize",
-    "slug": "DuvetSize",
+    "slug": "duvet-size",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "backgroundColor":"#fbeeac",
+    "backgroundColor": "#fbeeac",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -16,16 +16,24 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sharonsn.duvetsize"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.sharonsn.duvetsize"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a5955744-91d9-4b18-a619-283d11eeef64"
+      }
+    },
+    "owner": "sharonsn"
   }
 }

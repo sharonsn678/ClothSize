@@ -1,9 +1,7 @@
-import { useContext, useLayoutEffect, useReducer, useState } from 'react';
-import { View, Text, StyleSheet, Button, Pressable, FlatList } from 'react-native'
+import { useContext, useLayoutEffect, useReducer, useState, useEffect } from 'react';
+import { View, Text, StyleSheet, Pressable, FlatList } from 'react-native'
 import { SIZEITEMS, CATEGORIES } from '../data/sizedata';
 import Colors from '../../colors/Colors'
-//import SearchBar from '../components/SearchBar';
-import NumberPicker from '../components/NumberPicker';
 import IconButton from '../components/IconButton';
 import { FavoritesContext } from '../storage/MyContext';
 import { sizeReducer } from '../reducers/sizeConversion.js'
@@ -17,12 +15,23 @@ function MoreInfoScreen({ route, navigation }) {
     const itemId = route.params.itemId;
     const itemDetail = SIZEITEMS.find((theitem) => { return theitem.id == itemId })
     const regionid = itemDetail.regionIds[0];
-    const category = CATEGORIES.find((acat) => { return acat.id === regionid });
+
+    const [state, dispatch] = useReducer(sizeReducer, itemDetail);
+
+    [category, setCategory] = useState('');
+    useEffect(()=>{
+        setCategory(CATEGORIES.find((acat) => { return acat.id === regionid }));
+        dispatch({ unitToChange: false, payload: itemDetail });
+        handleTermChanges(term)
+         }, 
+
+        [itemDetail]);
+
 
     const favoriteItemCtx = useContext(FavoritesContext);
     const isFavorite = favoriteItemCtx.ids.includes(itemId);
-    const [itemIsFavorite, setItemIsFavorite] = useState(isFavorite);
 
+    const [itemIsFavorite, setItemIsFavorite] = useState(isFavorite);
     const [searchArray, setSearchArrray] = useState([])
     const [term, SetTerm] = useState('')
 
@@ -40,6 +49,7 @@ function MoreInfoScreen({ route, navigation }) {
     function handleTermChanges(proximity) {
         //const proximity = 10;
         //console.log("handleTerm:",props);
+        SetTerm(proximity);
 
         if (proximity > 0 && proximity < 100) {
 
@@ -81,7 +91,7 @@ function MoreInfoScreen({ route, navigation }) {
         });
     }, [navigation, headerButtonPressHandler]);
 
-    const [state, dispatch] = useReducer(sizeReducer, itemDetail);
+
 
     function renderSizeItem(itemData){
         const item = {
@@ -89,7 +99,7 @@ function MoreInfoScreen({ route, navigation }) {
             name: itemData.item.name,
             width: itemData.item.width,
             length: itemData.item.length,
-            unit: itemData.item.unit,
+            unit: itemData.item.unit
         }
 
         return (
@@ -109,7 +119,7 @@ function MoreInfoScreen({ route, navigation }) {
 
                     <Pressable
                         style={styles.ConvertButton}
-                        onPress={() => dispatch({ unitToChange: true })}>
+                        onPress={() => dispatch({ unitToChange: true})}>
                         <Text>{state.unit.toUpperCase()}</Text>
                     </Pressable>
                 </View>

@@ -1,4 +1,4 @@
-import {View, StyleSheet, FlatList, Text, Pressable } from "react-native"
+import {FlatList} from "react-native"
 import {CATEGORIES} from '../data/sizedata'
 import CategoryTile from "../components/categoryTile";
 

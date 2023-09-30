@@ -1,5 +1,5 @@
 
-import { Button, StyleSheet, Text, TextInput, View, ScrollView, FlatList, SafeAreaView } from 'react-native';
+import { Button, StyleSheet, Text, View, FlatList } from 'react-native';
 import { useState, useContext, useEffect } from 'react';
 import SingleItem from '../components/SingleItem';
 import ItemInput from '../components/ItemInput.js';
@@ -7,7 +7,6 @@ import Colors from '../../colors/Colors';
 import { FavoritesContext } from '../storage/MyContext';
 import FavoriteSingleItem from '../components/FavoriteItem';
 import { storeItem, fetchItems } from '../http/firebase';
-//import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 function MyListScreen ({navigation}){
@@ -46,29 +45,7 @@ function MyListScreen ({navigation}){
       endAddItemHandler();
     }
 
-    // const saveItems = async (data) =>{
-    //   const mydata = JSON.stringify(data)
-    //   console.log("mydata", mydata)
-    //   try{
-    //     await AsyncStorage.setItem('myItems', JSON.stringify(data));
-    //     console.log("Saved", data)
-    //   }catch(error){
-    //     console.log(error);
-    //   }
-    // }
-
-    // const getMyItems = async () => {
-    //   try{
-    //     const savedItems = await AsyncStorage.getItem('myItems');
-    //     console.log(saveItems);
-    //     const parsedItems = JSON.parse(saveItems);
-
-    //     setEnteredItems(currentEnteredItems => [
-    //       ...currentEnteredItems, parsedItems]);
-    //   } catch(error) {
-    //       console.log(error);
-    //   }
-    // }
+    
 
 
     function deleteItemHandler(id) {

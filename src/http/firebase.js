@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-//duvetsize
-const ENDURL = 'https://-default-rtdb.firebaseio.com/'
+//
+const ENDURL = 'https://duvetsize-default-rtdb.firebaseio.com/'
 
 export async function storeItem(itemData) {
     try {

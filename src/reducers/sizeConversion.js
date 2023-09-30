@@ -16,6 +16,7 @@ export const sizeReducer = (state, action) => {
             }
     }
     else{
-        return state
+        const newData = action.payload;
+        return {...state, name: newData.name, width: newData.width, length: newData.length, unit: newData.unit}
     }
 };
