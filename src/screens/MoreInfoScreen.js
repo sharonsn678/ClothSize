@@ -120,7 +120,7 @@ function MoreInfoScreen({ route, navigation }) {
                     <Pressable
                         style={styles.ConvertButton}
                         onPress={() => dispatch({ unitToChange: true})}>
-                        <Text>{state.unit.toUpperCase()}</Text>
+                        <Text style ={styles.buttonText}>{state.unit.toUpperCase()}</Text>
                     </Pressable>
                 </View>
             </View>
@@ -137,6 +137,7 @@ function MoreInfoScreen({ route, navigation }) {
                     }}
                 renderItem={renderSizeItem}
                 />
+                <Text style={styles.notFoundText}>{ (searchArray.length==0) ? "No items found" : "" }</Text>
             </View>
 
         </View>
@@ -156,22 +157,33 @@ const styles = StyleSheet.create(
             padding: 8
         },
         rowText: {
-            flexDirection: 'row'
+            flexDirection: 'row',
+            alignItems: 'baseline',
         },
         ConvertButton: {
-            width: 40,
+            width: 60,
+            height: 28,
             alignItems: 'center',
             borderColor: Colors.accentgreen,
             borderWidth: 1,
-            fontSize: 40,
             borderRadius: 3,
-            margin: 3
+            margin: 3,
+        },
+        buttonText:{
+            fontSize: 18,
+            paddingBottom: 2,
         },
         detailText: {
             fontSize: 20,
         },
         detailTitle: {
             fontSize: 20,
-        }
+        },
+        notFoundText:{
+            flex: 1,
+            padding: 30,
+            fontSize: 20
+        },
+        
     }
 );

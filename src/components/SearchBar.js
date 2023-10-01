@@ -1,8 +1,8 @@
 import {useState} from "react";
-import{ View, TextInput, StyleSheet, Pressable,Text} from 'react-native'
+import{ View, TextInput, StyleSheet, Pressable,Text,Keyboard} from 'react-native'
 import Colors from "../../colors/Colors";
 import { Feather } from '@expo/vector-icons'
-import NumberPicker from "./NumberPicker";
+
 
 const SearchBar = ({term, onTermChange})=>{
     const [enteredText, setEnteredText] = useState(term)
@@ -18,8 +18,12 @@ const SearchBar = ({term, onTermChange})=>{
             onChangeText={newTerm=>{setEnteredText(newTerm)}}
         ></TextInput>
         <Pressable 
+            android_ripple={{ color: '#ccc' }}
             style = {styles.submitButton}
-            onPress={() => onTermChange(enteredText)}>
+            onPress={() => {
+                Keyboard.dismiss();
+                onTermChange(enteredText);
+                }}>
                 <Text style={styles.text}>Submit</Text>
         </Pressable>      
         </View>

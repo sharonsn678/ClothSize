@@ -85,7 +85,11 @@ function MyListScreen ({navigation}){
                       id={dataitem.item.id} onDeleteItem={deleteItemHandler} />
                   );
                 }
-              }>
+              }
+              keyExtractor={(item) => {
+                return item.id;}}
+              >
+
             </FlatList>
           </View>
            <View style={styles.listItemsContainer}>
@@ -95,7 +99,8 @@ function MyListScreen ({navigation}){
               (dataitem)=>{
                 return(<FavoriteSingleItem id={dataitem.item} />);
               }}
-              keyExtractor = {(item)=> item.id
+              keyExtractor = {(item)=>{
+                return item}
               }>
             </FlatList>
           </View> 

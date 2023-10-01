@@ -19,7 +19,7 @@ function SizeItemView({ id, name, width, length, unit}) {
     return (<View style={styles.itemContainer}>
         <Pressable
             android_ripple={{ color: '#ccc' }}
-            style={({ pressed }) => (pressed ? styles.buttonPressed : null)}
+            style={({ pressed }) => (pressed ? styles.pressed : null)}
             onPress={selectItemHandler}
         >
             <View style={styles.innerContainer}>
@@ -70,4 +70,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 4,
         fontSize: 16,
     },
+    pressed: {
+        opacity: 0.75,
+      },
 });
