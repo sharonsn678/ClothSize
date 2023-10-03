@@ -22,7 +22,8 @@ function MoreInfoScreen({ route, navigation }) {
     useEffect(()=>{
         setCategory(CATEGORIES.find((acat) => { return acat.id === regionid }));
         dispatch({ unitToChange: false, payload: itemDetail });
-        handleTermChanges(term)
+        handleTermChanges(term);
+        setItemIsFavorite(favoriteItemCtx.ids.includes(itemId));
          }, 
 
         [itemDetail]);
