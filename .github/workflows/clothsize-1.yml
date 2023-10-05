@@ -1,0 +1,11 @@
+name: clothsize-1
+on: workflow_dispatch
+jobs:
+  first-job:
+    runs-on: ubuntu-lastest
+    steps:
+      - name: print start status
+        run: echo "started build"
+      - name: print end status
+        run: echo "end build"
+        
