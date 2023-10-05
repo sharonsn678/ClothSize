@@ -1,0 +1,10 @@
+name: build on expo
+on: workflow_dispatch
+jobs: 
+  apk-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print start status
+        run: echo "build on expo starts"
+      - name: print end status
+        run: echo "End of build"
