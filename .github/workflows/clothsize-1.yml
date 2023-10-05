@@ -1,11 +1,30 @@
 name: clothsize-1
-on: workflow_dispatch
+on: push
 jobs:
-  first-job:
+  test-job:
     runs-on: ubuntu-lastest
     steps:
-      - name: print start status
-        run: echo "started build"
-      - name: print end status
-        run: echo "end build"
+      - name: Get code
+        uses: actions/checkout@v3
+        
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: yarn 
+
+      - name: Setup EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.clothsize_secret }}
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Create preview
+        uses: expo/expo-github-action/preview@v8
+        with:
+          command: eas update --auto
+
         
